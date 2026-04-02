@@ -1,0 +1,4 @@
+node_modules/
+waitlist.json
+config.json
+.DS_Store

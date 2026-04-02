@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>David Saleh | Author • Speaker • The Calm Man</title>
+  <meta name="description" content="Author. Behavioural thinker. 7 books. Talk to Astrid, my AI assistant." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 0 60px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* HERO */
+    .hero {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.1) 0%,
+        rgba(0,0,0,0.3) 40%,
+        rgba(10,10,10,0.95) 100%
+      );
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      white-space: nowrap;
+    }
+
+    /* PROFILE */
+    .profile {
+      width: 100%;
+      text-align: center;
+      padding: 0 24px;
+      margin-top: -40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid #1a1a1a;
+      object-fit: cover;
+      margin-bottom: 14px;
+      background: #222;
+    }
+
+    .name {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 4px;
+    }
+
+    .tagline {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+      letter-spacing: 0.3px;
+    }
+
+    .bio {
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+      max-width: 320px;
+      margin: 0 auto 28px;
+    }
+
+    /* BUTTONS */
+    .buttons {
+      width: 100%;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 16px 20px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      border: none;
+      letter-spacing: 0.1px;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+      opacity: 0.85;
+    }
+
+    .btn-astrid {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      border: 1px solid rgba(99, 179, 237, 0.3);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(99, 179, 237, 0.15);
+    }
+
+    .btn-astrid .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #63b3ed;
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: #0a0a0a;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #fff;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* DIVIDER */
+    .divider {
+      width: calc(100% - 40px);
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+      margin: 8px 0;
+    }
+
+    /* WAITLIST SECTION */
+    .waitlist-section {
+      width: 100%;
+      padding: 0 20px;
+      margin-top: 4px;
+    }
+
+    .waitlist-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    .waitlist-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .waitlist-card p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 18px;
+    }
+
+    .waitlist-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .waitlist-form input {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-size: 14px;
+      color: #fff;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .waitlist-form input::placeholder {
+      color: rgba(255,255,255,0.3);
+    }
+
+    .waitlist-form input:focus {
+      border-color: rgba(255,255,255,0.3);
+    }
+
+    .waitlist-form button {
+      background: #fff;
+      color: #0a0a0a;
+      border: none;
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .waitlist-form button:active {
+      opacity: 0.8;
+    }
+
+    .waitlist-success {
+      display: none;
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      padding: 8px 0;
+    }
+
+    /* SOCIAL */
+    .social {
+      display: flex;
+      gap: 16px;
+      margin-top: 32px;
+      padding-bottom: 8px;
+    }
+
+    .social a {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .social a:hover {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+    }
+
+    .social svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    /* FOOTER */
+    .footer {
+      margin-top: 28px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- HERO IMAGE -->
+    <div class="hero">
+      <img src="https://davidcharlessaleh.com/wp-content/uploads/2024/04/David-Saleh-Hero.jpg"
+           alt="David Saleh"
+           onerror="this.style.display='none'; this.parentElement.style.height='200px'; this.parentElement.style.background='linear-gradient(135deg,#0f0f1a,#1a1a2e)';" />
+      <div class="hero-overlay"></div>
+      <div class="hero-badge">Consumer — Observer → Operator</div>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="profile">
+      <div class="name">David Saleh</div>
+      <div class="tagline">Author • Speaker • The Calm Man</div>
+      <div class="bio">Author. Behavioural thinker. 7 books.<br>Exploring the psychology of everyday power.</div>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="buttons">
+
+      <!-- ASTRID -->
+      <a href="tel:+61259441286" class="btn btn-astrid">
+        <div class="pulse"></div>
+        Talk to Astrid — My AI Assistant
+      </a>
+
+      <div class="divider"></div>
+
+      <!-- BOOKS -->
+      <a href="https://books.by/davidsaleh" target="_blank" class="btn btn-primary">
+        Get my Books
+      </a>
+
+      <a href="https://www.amazon.com/author/davidsaleh" target="_blank" class="btn btn-secondary">
+        Buy from Amazon
+      </a>
+
+      <div class="divider"></div>
+
+      <!-- CONTENT -->
+      <a href="https://medium.com/@davidsaleh_96035" target="_blank" class="btn btn-secondary">
+        Explore My Published Work
+      </a>
+
+      <a href="https://davidcharlessaleh.com" target="_blank" class="btn btn-outline">
+        Visit my Website
+      </a>
+
+    </div>
+
+    <!-- WAITLIST -->
+    <div class="waitlist-section" style="margin-top: 20px;">
+      <div class="waitlist-card">
+        <h3>Join the Waitlist</h3>
+        <p>Be first to know what's coming next.</p>
+        <form class="waitlist-form" onsubmit="submitWaitlist(event)">
+          <input type="text" id="wl-name" placeholder="Your name" required autocomplete="name" />
+          <input type="email" id="wl-email" placeholder="Your email" required autocomplete="email" />
+          <button type="submit">Join Waitlist</button>
+        </form>
+        <div class="waitlist-success" id="wl-success">You're on the list. Watch your inbox.</div>
+      </div>
+    </div>
+
+    <!-- SOCIAL ICONS -->
+    <div class="social">
+      <!-- Instagram -->
+      <a href="https://instagram.com/david_saleh" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+      </a>
+      <!-- Facebook -->
+      <a href="https://facebook.com/davidsalehauthor" target="_blank" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+      </a>
+      <!-- LinkedIn -->
+      <a href="https://linkedin.com/in/davidsaleh" target="_blank" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+      </a>
+      <!-- Threads -->
+      <a href="https://threads.net/@david_saleh" target="_blank" aria-label="Threads">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 9.258c1.016-1.569 2.672-2.448 4.693-2.506 2.346-.066 3.945.775 4.802 1.886.937 1.206 1.2 2.906 1.013 4.945.126.112.249.228.369.349 1.086 1.099 1.776 2.597 1.776 4.148 0 1.8-.657 3.442-1.85 4.621-1.543 1.519-3.645 2.289-6.354 2.299z"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="footer">david saleh © 2026</div>
+
+  </div>
+
+  <script>
+    async function submitWaitlist(e) {
+      e.preventDefault();
+      const name = document.getElementById('wl-name').value.trim();
+      const email = document.getElementById('wl-email').value.trim();
+      if (!name || !email) return;
+
+      const btn = e.target.querySelector('button');
+      btn.textContent = 'Adding you...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('/waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email })
+        });
+        if (res.ok) {
+          document.querySelector('.waitlist-form').style.display = 'none';
+          document.getElementById('wl-success').style.display = 'block';
+        } else {
+          btn.textContent = 'Try again';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>
