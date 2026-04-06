@@ -524,17 +524,17 @@
       </div>
     </div>
 
-    <!-- WAITLIST -->
+    <!-- ASTRID CALL FORM -->
     <div class="waitlist-section" style="margin-top: 20px;">
       <div class="waitlist-card">
-        <h3>Join the Waitlist</h3>
-        <p>Be first to know what's coming next.</p>
-        <form class="waitlist-form" onsubmit="submitWaitlist(event)">
-          <input type="text" id="wl-name" placeholder="Your name" required autocomplete="name" />
-          <input type="email" id="wl-email" placeholder="Your email" required autocomplete="email" />
-          <button type="submit">Join Waitlist</button>
+        <h3>Talk to Astrid</h3>
+        <p>Drop your number. Astrid calls you in seconds.</p>
+        <form class="waitlist-form" onsubmit="submitAstridCall(event)">
+          <input type="text" id="ac-name" placeholder="Your name" required autocomplete="name" />
+          <input type="tel" id="ac-phone" placeholder="Your mobile number" required autocomplete="tel" />
+          <button type="submit">Call Me Now</button>
         </form>
-        <div class="waitlist-success" id="wl-success">You're on the list. Watch your inbox.</div>
+        <div class="waitlist-success" id="ac-success">Astrid is calling you now.</div>
       </div>
     </div>
 
@@ -571,25 +571,25 @@
   </div>
 
   <script>
-    async function submitWaitlist(e) {
+    async function submitAstridCall(e) {
       e.preventDefault();
-      const name = document.getElementById('wl-name').value.trim();
-      const email = document.getElementById('wl-email').value.trim();
-      if (!name || !email) return;
+      const name = document.getElementById('ac-name').value.trim();
+      const phone = document.getElementById('ac-phone').value.trim();
+      if (!name || !phone) return;
 
       const btn = e.target.querySelector('button');
-      btn.textContent = 'Adding you...';
+      btn.textContent = 'Calling you now...';
       btn.disabled = true;
 
       try {
-        const res = await fetch('/waitlist', {
+        const res = await fetch('https://astrid-webhook-production-db6c.up.railway.app/ghl-new-lead?secret=astrid-admin-2026', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email })
+          body: JSON.stringify({ firstName: name, phone, source: 'link-in-bio' })
         });
         if (res.ok) {
           document.querySelector('.waitlist-form').style.display = 'none';
-          document.getElementById('wl-success').style.display = 'block';
+          document.getElementById('ac-success').style.display = 'block';
         } else {
           btn.textContent = 'Try again';
           btn.disabled = false;
