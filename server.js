@@ -83,6 +83,16 @@ app.post('/admin/update', (req, res) => {
   res.json({ ok: true, config });
 });
 
+// ─── ADMIN: PUSH INDEX.HTML REMOTELY ────────────────────────────────────────
+app.post('/admin/push-html', (req, res) => {
+  if (req.query.secret !== ADMIN_SECRET) return res.status(401).json({ error: 'Unauthorized' });
+  const { html } = req.body;
+  if (!html) return res.status(400).json({ error: 'html field required' });
+  fs.writeFileSync(path.join(__dirname, 'index.html'), html, 'utf8');
+  console.log(`[admin] index.html updated remotely (${html.length} bytes)`);
+  res.json({ ok: true, bytes: html.length });
+});
+
 // ─── SERVE INDEX ─────────────────────────────────────────────────────────────
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
